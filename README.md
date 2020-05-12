@@ -1,5 +1,5 @@
 # dmxmapping - change values of dmx output like dimmercurves 
-## dmx function for esp (ESP8266, ESP32) microconrollers, that support SPIFFS
+## dmx function for esp (ESP8266, ESP32) microcontrollers, that support SPIFFS
 
 When working with dmx there are several reasons for adjusting the output values:
 - change linearity of dimming
@@ -45,7 +45,7 @@ Line257: ignored
 ```
 
 As mapping is done in an array, that keeps all values, you can use only limited map-files due to limited memory depending on your RAM. Default are 20 mappings (`DMXMAP_MAX_MAPS` in `dmxmapping.h`) including default mapping, so 19 user mappings possible:  
-`1.map, 2.map, 3.map ... 19.map`S
+`1.map, 2.map, 3.map ... 19.map`
 
 `mappings.txt` describes which dmx-channel uses which mapping
 ```
