@@ -18,11 +18,6 @@ If you control the movement of you laser, you will experience, that values `0 to
 
 If you want to control laser movement with the dmx software you need a translation like
 
-```
-                              L        M          R
-dmx controllers value         0 ... 127 128 ... 255
-translated value to laser    64 ... 127   0 ...  63
-```
 | Translate from to    | L | M | R |
 | -------------------- | --- |:---:| ---:|
 | dmx controllers value | 0 ... | 127 128 | ... 255 |
