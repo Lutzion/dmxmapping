@@ -57,7 +57,19 @@ If a channel is not included in the `mappings.txt`, it uses default mapping 0->0
 ## Implementing dmxmapping in your code
 At the moment dmxmapping exists for ESP8266 as it uses SPIFFS file system.
 
-You have to 
+You have to either
+
+``` cpp
+#define MAPS
+```
+
+or change your `platformio.ini` like
+```
+  build_flags = ...
+                -D MAPS
+```
+
+and 
 ``` cpp
 #include <dmxmapping.h>
 ```
@@ -84,3 +96,4 @@ void setup()
 
 ```
 
+For debugging `#define VERBOSE_MAP` somewhere or add `-D VERBOSE_MAP` to `build_flags` in `platformio.ini`.
