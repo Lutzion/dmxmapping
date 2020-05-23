@@ -42,9 +42,9 @@ Line257: ignored
 As mapping is done in an array, that keeps all values, you can use only limited map-files due to limited memory depending on your RAM. Default are 20 mappings (`DMXMAP_MAX_MAPS` in `dmxmapping.h`) including default mapping, so 19 user mappings possible:  
 `1.map, 2.map, 3.map ... 19.map`
 
-`mappings.txt` describes which dmx-channel uses which mapping
+`mappings.map` describes which dmx-channel uses which mapping
 ```
-mappings.txt
+mappings.map
 -------------------------------------------
 <dmx-channel-no>,<map-file-no>
 ```
@@ -52,7 +52,7 @@ mappings.txt
 - dmx-channel-no: a value from 1 to 512
 - map-file-no: a valid map-file-no from 1 to 19 (or 0 for default)
 
-If a channel is not included in the `mappings.txt`, it uses default mapping 0->0, 1->1, ... 255->255.
+If a channel is not included in the `mappings.map`, it uses default mapping 0->0, 1->1, ... 255->255.
 
 ## Implementing dmxmapping in your code
 At the moment dmxmapping exists for ESP8266 as it uses SPIFFS file system.
@@ -74,7 +74,7 @@ and
 #include <dmxmapping.h>
 ```
 
-Further on - after SPIFFS is initialised - you have to init the arrays, read `mappings.txt` and read the existing `*.map` files. 
+Further on - after SPIFFS is initialised - you have to init the arrays, read `mappings.map` and read the existing `*.map` files. 
 
 ``` cpp
 void setup()

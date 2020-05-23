@@ -82,14 +82,14 @@ bool isLineComment(String line)
 }
 
 // === chan2DmxMapsRead()
-// reads the file mappings.txt and stores into array, which channel uses which map
+// reads the file mappings.map and stores into array, which channel uses which map
 bool chan2DmxMapsRead()
 {
 #if VERBOSE_MAP
-    Serial.println("mappingdmx())");
+    Serial.println("chan2DmxMapsRead())");
 #endif
-
-  String sFile = String("/mappings.txt") ;
+  // please use new map file
+  String sFile = String("/mappings.map") ;
 #ifdef LITTLEFS
   if (!LittleFS.exists(sFile))
 #else
@@ -97,9 +97,21 @@ bool chan2DmxMapsRead()
 #endif
   {
 #if VERBOSE_MAP
-    Serial.println("mappingdmx: no file <" + sFile + ">");
+    Serial.println("chan2DmxMapsRead: no file <" + sFile + ">");
 #endif
-    return false;
+    // For compatibility
+    sFile = String("/mappings.txt") ;
+#ifdef LITTLEFS
+    if (!LittleFS.exists(sFile))
+#else
+    if (!SPIFFS.exists(sFile))
+#endif
+    {
+#if VERBOSE_MAP
+      Serial.println("chan2DmxMapsRead: no file <" + sFile + ">");
+#endif
+      return false;
+    }
   }
 
 #ifdef LITTLEFS
@@ -112,7 +124,7 @@ bool chan2DmxMapsRead()
   {
     String line = f.readStringUntil('\n') ;
 #if VERBOSE_MAP
-    Serial.println("mappingdmx: " + line);
+    Serial.println("chan2DmxMapsRead: " + line);
 #endif
 
     if (isLineComment(line))
@@ -155,7 +167,7 @@ bool chan2DmxMapsRead()
 bool dmxMapsRead()
 {
 #if VERBOSE_MAP
-    Serial.println("readMaps()");
+    Serial.println("dmxMapsRead()");
 #endif
 
   for (uint8_t i = 1; i < DMXMAP_MAX_MAPS; i++)
@@ -169,13 +181,13 @@ bool dmxMapsRead()
 #endif
     {
   #if VERBOSE_MAP
-      Serial.println("readMaps: no file <" + sFile + ">");
+      Serial.println("dmxMapsRead: no file <" + sFile + ">");
   #endif
       continue;
     }
 
   #if VERBOSE_MAP
-      Serial.println("readMaps: file " + sFile);
+      Serial.println("dmxMapsRead: file " + sFile);
   #endif
 
 #ifdef LITTLEFS
