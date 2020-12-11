@@ -100,4 +100,16 @@ void setup()
 
 ```
 
-For debugging `#define VERBOSE_MAP` somewhere or add `-D VERBOSE_MAP` to `build_flags` in `platformio.ini`.
+For debugging `#define VERBOSE_MAP` somewhere or add `-D VERBOSE_MAP` to `build_flags` in `platformio.ini`.  
+  
+  
+# dmxmapping in action  
+  
+Click the picture to watch the video.
+[![dmxmapping in action as video](dmxmapping_pic2vid.jpg)](http://lutzion.de/media/dmxmapping_with_2_lasers.mp4)  
+  
+  
+# dmxmapping implemented  
+
+my first an only implementation of dmxmapping so far is the project 
+[ESP8266_Artnet_DMX_DC](https://github.com/Lutzion/ESP8266_Artnet_DMX_DC).  
