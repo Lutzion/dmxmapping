@@ -55,8 +55,8 @@ mappings.map
 If a channel is not included in the `mappings.map`, it uses default mapping 0->0, 1->1, ... 255->255.
 
 ## Implementing dmxmapping in your code
-At the moment dmxmapping exists for ESP8266 as it uses SPIFFS file system.
-
+At the moment dmxmapping exists for ESP8266 and you can choose between SPIFFS and LittleFS file system. Define `LITTLEFS` to use LittleFS.  
+  
 You have to either
 
 ``` cpp
@@ -74,14 +74,18 @@ and
 #include <dmxmapping.h>
 ```
 
-Further on - after SPIFFS is initialised - you have to init the arrays, read `mappings.map` and read the existing `*.map` files. 
+Further on - after filesystem is initialised - you have to init the arrays, read `mappings.map` and read the existing `*.map` files. 
 
 ``` cpp
 void setup()
 {
     ...
 
-    SPIFFS.begin();
+#ifdef LITTLEFS
+  LittleFS.begin();
+#else
+  SPIFFS.begin();
+#endif
     ...
 
     dmxMapsInit() ;
